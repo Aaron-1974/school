@@ -1,29 +1,29 @@
-{
-	"name": "school-site",
-	"version": "0.0.1",
-	"scripts": {
-		"dev": "svelte-kit dev",
-		"build": "svelte-kit build",
-		"preview": "svelte-kit preview"
-	},
-	"devDependencies": {
-		"@sveltejs/adapter-netlify": "^1.0.0-next.31",
-		"@sveltejs/kit": "next",
-		"autoprefixer": "^10.3.1",
-		"cssnano": "^5.0.6",
-		"postcss": "^8.3.5",
-		"postcss-load-config": "^3.1.0",
-		"svelte": "^3.34.0",
-		"svelte-preprocess": "^4.7.4",
-		"tailwindcss": "^2.2.4"
-	},
-	"type": "module",
-	"dependencies": {
-		"axios": "^0.21.4",
-		"read-excel-file": "^5.2.10",
-		"sheet2api-js": "^0.6.1",
-		"svelte-async-readable": "^4.0.2",
-		"xl-json": "^4.0.0",
-		"xmlhttprequest": "^1.8.0"
-	}
-}
+# dependabot.yml file with updates
+# disabled for Docker and limited for npm
+
+version: 2
+updates:
+  # Configuration for Dockerfile
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      # Disable all pull requests for Docker dependencies
+    open-pull-requests-limit: 0
+
+  # Configuration for npm
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    ignore:
+      # Ignore updates to packages that start with 'aws'
+      # Wildcards match zero or more arbitrary characters
+      - dependency-name: "aws*"
+      # Ignore some updates to the 'express' package
+      - dependency-name: "express"
+        # Ignore only new versions for 4.x and 5.x
+        versions: ["4.x", "5.x"]
+      # For all packages, ignore all patch updates
+      - dependency-name: "*"
+        update-types: ["version-update:semver-patch"]
